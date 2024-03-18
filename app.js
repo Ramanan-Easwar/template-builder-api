@@ -2,7 +2,9 @@ const app = require('express')();
 const bodyParser = require('body-parser');
 const PORT = 8000;
 const { connectToMongoDb } = require('./src/config/mongoClientConfig');
-const schemaController  = require("./src/controller/schemaController")
+const schemaController  = require("./src/controller/schemaController");
+const cors = require('cors');
+
 
 const testMongoHealth = async () => {
     try {
@@ -11,6 +13,7 @@ const testMongoHealth = async () => {
         throw err;
     }
 }
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
